@@ -1,0 +1,77 @@
+CREATE DATABASE colorado;
+
+CREATE TABLE grupo (
+    id_grupo INT PRIMARY KEY AUTO_INCREMENT,
+    nome_grupo CHAR(1)
+);
+
+CREATE TABLE membro (
+    id_membro INT PRIMARY KEY AUTO_INCREMENT,
+    nome_membro VARCHAR(50),
+    id_grupo INT,
+    FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo)
+);
+
+CREATE TABLE visita (
+    id_visita INT PRIMARY KEY AUTO_INCREMENT,
+    visita DATE,
+    id_membro INT,
+    FOREIGN KEY (id_membro) REFERENCES membro(id_membro),
+    id_grupo INT,
+    FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo)
+);
+
+INSERT INTO grupo (nome_grupo) VALUES ('A'), ('B'), ('C'), ('D');
+
+
+-- Inserindo 10 membros no grupo A (id_grupo = 1)
+INSERT INTO membro (nome_membro, id_grupo) VALUES
+('Douglas', 1),
+('Samuel', 1),
+('Lucas', 1),
+('Gabriel', 1),
+('Pedro', 1),
+('Rafael', 1),
+('Thiago', 1),
+('Caio', 1),
+('Felipe', 1),
+('Rodrigo', 1);
+
+-- Inserindo 10 membros no grupo B (id_grupo = 2)
+INSERT INTO membro (nome_membro, id_grupo) VALUES
+('Carlos', 2),
+('João', 2),
+('Mateus', 2),
+('Vinicius', 2),
+('Henrique', 2),
+('Marcos', 2),
+('Leandro', 2),
+('Bruno', 2),
+('Renato', 2),
+('André', 2);
+
+-- Inserindo 10 membros no grupo C (id_grupo = 3)
+INSERT INTO membro (nome_membro, id_grupo) VALUES
+('Gustavo', 3),
+('Eduardo', 3),
+('Diego', 3),
+('Alexandre', 3),
+('Danilo', 3),
+('Victor', 3),
+('Sérgio', 3),
+('Rogério', 3),
+('Leonardo', 3),
+('Paulo', 3);
+
+-- Inserindo 10 membros no grupo D (id_grupo = 4)
+INSERT INTO membro (nome_membro, id_grupo) VALUES
+('Bruno', 4),
+('Antônio', 4),
+('Ricardo', 4),
+('Fábio', 4),
+('Adriano', 4),
+('Fernando', 4),
+('Roberto', 4),
+('Daniel', 4),
+('Maurício', 4),
+('Vitor', 4);

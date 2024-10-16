@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Visita</title>
+    <script>
+        // Membros agrupados por grupo (você pode gerar isso no PHP e injetar no JS)
+        const membrosPorGrupo = {
+            1: [
+                { id: 1, nome: "Membro 1 do Grupo 1" },
+                { id: 2, nome: "Membro 2 do Grupo 1" }
+            ],
+            2: [
+                { id: 3, nome: "Membro 1 do Grupo 2" },
+                { id: 4, nome: "Membro 2 do Grupo 2" }
+            ],
+            3: [
+                { id: 5, nome: "Membro 1 do Grupo 3" },
+                { id: 6, nome: "Membro 2 do Grupo 3" }
+            ]
+        };
+
+        // Função para carregar os membros dinamicamente com base no grupo selecionado
+        function carregarMembros() {
+            // Captura o valor do grupo selecionado
+            const idGrupo = document.getElementById('id_grupo').value;
+
+            // Captura o elemento do select de membros
+            const selectMembro = document.getElementById('membro');
+
+            // Limpa o select dos membros antes de adicionar novos membros
+            selectMembro.innerHTML = '';
+
+            // Verifica se há membros para o grupo selecionado
+            if (membrosPorGrupo[idGrupo]) {
+                // Percorre os membros e adiciona-os como opções no select de membros
+                membrosPorGrupo[idGrupo].forEach(membro => {
+                    const option = document.createElement('option');
+                    option.value = membro.id;
+                    option.text = membro.nome;
+                    selectMembro.appendChild(option);
+                });
+            } else {
+                // Se não houver membros para o grupo selecionado
+                const option = document.createElement('option');
+                option.text = 'Nenhum membro encontrado';
+                selectMembro.appendChild(option);
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="" method="post">
+        <fieldset>
+            <legend>Agendar Visita</legend>
+
+            <!-- Select para escolher o grupo -->
+            <label for="id_grupo">Grupo:</label>
+            <select id="id_grupo" name="id_grupo" onchange="carregarMembros()" required>
+                <option value="">Selecione um grupo</option>
+                <option value="1">Grupo 1</option>
+                <option value="2">Grupo 2</option>
+                <option value="3">Grupo 3</option>
+            </select>
+
+            <!-- Select para carregar os membros com base no grupo -->
+            <label for="membro">Selecione o Membro:</label>
+            <select name="membro" id="membro" required>
+                <option value="">Selecione um grupo antes</option>
+            </select>
+        </fieldset>
+        <input type="submit" value="Agendar">
+    </form>
+</body>
+</html>
